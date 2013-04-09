@@ -174,8 +174,8 @@ function test(name, fixture) {
 
     if (JSON.stringify(result.identifier) !== JSON.stringify(cursor)) {
         console.log('  FAIL: Mismatched cursor');
-        console.log('    Expected:', JSON.stringify(result.identifier));
-        console.log('      Actual:', JSON.stringify(cursor));
+        console.log('    Expected:', JSON.stringify(cursor));
+        console.log('      Actual:', JSON.stringify(result.identifier));
         console.log();
         ++failures;
         return;
@@ -183,8 +183,8 @@ function test(name, fixture) {
 
     if (JSON.stringify(result.declaration) !== JSON.stringify(declaration)) {
         console.log('  FAIL: Mismatched declaration');
-        console.log('    Expected:', JSON.stringify(result.declaration));
-        console.log('      Actual:', JSON.stringify(declaration));
+        console.log('    Expected:', JSON.stringify(declaration));
+        console.log('      Actual:', JSON.stringify(result.declaration));
         console.log();
         ++failures;
     }
@@ -195,8 +195,8 @@ function test(name, fixture) {
 
     if (JSON.stringify(result.references) !== JSON.stringify(references)) {
         console.log('  FAIL: Mismatched references');
-        console.log('    Expected:', JSON.stringify(result.references));
-        console.log('      Actual:', JSON.stringify(references));
+        console.log('    Expected:', JSON.stringify(references));
+        console.log('      Actual:', JSON.stringify(result.references));
         console.log();
         ++failures;
     }
