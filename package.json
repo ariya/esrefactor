@@ -31,6 +31,6 @@
         "test": "node test/run.js && npm run-script coverage",
         "coverage": "npm run-script analyze-coverage && npm run-script check-coverage",
         "analyze-coverage": "node node_modules/istanbul/lib/cli.js cover test/run.js",
-        "check-coverage": "node node_modules/istanbul/lib/cli.js check-coverage --statement -2 --branch -6 --function 100"
+        "check-coverage": "node node_modules/istanbul/lib/cli.js check-coverage --statement -2 --branch -5 --function 100"
     }
 }
