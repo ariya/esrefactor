@@ -201,6 +201,52 @@ function test(name, fixture) {
         ++failures;
     }
 
+    // Check renaming the identifier.
+    ['$', '$$', '_', '$unique', 'loooooong_name'].forEach(function (name ) {
+        var renamed;
+
+        function replace(line, marker) {
+            if (marker && line.substr(marker.index, marker.name.length) === marker.name) {
+                line = line.substr(0, marker.index) + name +
+                    line.substr(marker.index + marker.name.length);
+            }
+            return line;
+        }
+
+        renamed = [];
+        lines.forEach(function (line) {
+            line = replace(line, findMarker(line, 'reference'));
+            line = replace(line, findMarker(line, 'declaration'));
+            renamed.push(line);
+        });
+        renamed = renamed.join('\n');
+
+        result.renamed = context.rename(context.identify(cursor.range[0]), name);
+        if (!result.renamed) {
+            console.log('  FAIL: Unsuccesful renaming');
+            ++failures;
+            return;
+        }
+
+        if (renamed !== result.renamed) {
+            console.log('  FAIL: Mismatched renaming');
+            console.log('    Expected:', JSON.stringify(renamed.split('\n')));
+            console.log('      Actual:', JSON.stringify(result.renamed.split('\n')));
+            console.log();
+            ++failures;
+        }
+
+        // Check that invalid identification should not change the code.
+        result.renamed = context.rename(undefined, name);
+        if (fixture !== result.renamed) {
+            console.log('  FAIL: Wrong handling of invalid identification');
+            console.log('    Expected:', JSON.stringify(fixutre.split('\n')));
+            console.log('      Actual:', JSON.stringify(result.renamed.split('\n')));
+            console.log();
+            ++failures;
+        }
+    });
+
     // Check that passing a syntax tree also works.
     context.setCode(context._syntax);
 
