@@ -55,3 +55,21 @@ ECMAScript 5.1 Specification (ECMA-262).
 
 Note that if there is no identifier in the given position index,
 `identify()` will return _undefined_.
+
+### Renaming
+
+An identifier can be renamed using `rename()`. All other identical references
+associated with that identifier will be renamed as well, again taking into
+account the proper identifier scope. Renaming works for variable declaration,
+function name, and function parameter.
+
+For `rename()` to work, it needs to have the identification result
+(via `identify`) and the new name for the identifier.
+
+```javascript
+var ctx = new esrefactor.Context('var x; x = 42');
+var id = ctx.identify(4);
+var code = ctx.rename(id, 'answer');
+```
+In the above example, `code` is `var answer; answer = 42`.
+
