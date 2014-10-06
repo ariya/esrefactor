@@ -127,13 +127,13 @@ function test(name, fixture) {
         line = lines[i];
         marker = findMarker(line, 'cursor');
         if (marker) {
-            cursor = { type: 'Identifier', name: marker.name, range: []};
+            cursor = { type: 'Identifier', name: marker.name, range: [], nodePath: ''};
             cursor.range[0] = offset + marker.index;
             cursor.range[1] = offset + marker.index + marker.name.length;
         }
         marker = findMarker(line, 'declaration');
         if (marker) {
-            declaration = { type: 'Identifier', name: marker.name, range: []};
+            declaration = { type: 'Identifier', name: marker.name, range: [], nodePath: ''};
             declaration.range[0] = offset + marker.index;
             declaration.range[1] = offset + marker.index + marker.name.length;
         }
@@ -145,7 +145,8 @@ function test(name, fixture) {
                 range: [
                     offset + marker.index,
                     offset + marker.index + marker.name.length
-                ]
+                ],
+                nodePath: ''
             });
         }
         offset += (line.length + 1);
