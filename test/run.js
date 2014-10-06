@@ -127,13 +127,13 @@ function test(name, fixture) {
         line = lines[i];
         marker = findMarker(line, 'cursor');
         if (marker) {
-            cursor = { type: 'Identifier', name: marker.name, range: []};
+            cursor = { type: 'Identifier', name: marker.name, range: [], nodeIndex: ''};
             cursor.range[0] = offset + marker.index;
             cursor.range[1] = offset + marker.index + marker.name.length;
         }
         marker = findMarker(line, 'declaration');
         if (marker) {
-            declaration = { type: 'Identifier', name: marker.name, range: []};
+            declaration = { type: 'Identifier', name: marker.name, range: [], nodeIndex: ''};
             declaration.range[0] = offset + marker.index;
             declaration.range[1] = offset + marker.index + marker.name.length;
         }
@@ -145,7 +145,8 @@ function test(name, fixture) {
                 range: [
                     offset + marker.index,
                     offset + marker.index + marker.name.length
-                ]
+                ],
+                nodeIndex: ''
             });
         }
         offset += (line.length + 1);
@@ -246,9 +247,6 @@ function test(name, fixture) {
             ++failures;
         }
     });
-
-    // Check that passing a syntax tree also works.
-    context.setCode(context._syntax);
 
     // Check that moving back the cursor doesn't hit any identifier.
     result = context.identify(cursor.range[0] - 1);

@@ -1,1 +1,1 @@
-answer = 42; // cursor:answer reference:answer
+answer = 42; // cursor:answer declaration:answer reference:answer
