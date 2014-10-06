@@ -1,1 +1,1 @@
-function foo(){} // cursor:foo reference:foo declaration:foo
+function func(){} // cursor:func reference:func declaration:func

@@ -1,1 +1,1 @@
-var foo; // cursor:foo reference:foo declaration:foo
+var varOnly; // cursor:varOnly reference:varOnly declaration:varOnly
