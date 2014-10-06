@@ -247,9 +247,6 @@ function test(name, fixture) {
         }
     });
 
-    // Check that passing a syntax tree also works.
-    context.setCode(context._syntax);
-
     // Check that moving back the cursor doesn't hit any identifier.
     result = context.identify(cursor.range[0] - 1);
     if (result) {
